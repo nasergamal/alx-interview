@@ -18,17 +18,15 @@ def output(filesize, results):
 try:
     for line in stdin:
         content = line.split()
-        try:
-            if content[7] in possible:
-                res[content[7]] = res.get(content[7], 0) + 1
-                size += int(content[8])
-        except IndexError:
-            pass
+        if len(content) > 5:
+            if content[-2] in possible:
+                res[content[-2]] = res.get(content[-2], 0) + 1
+            size += int(content[-1])
         i += 1
         if i == 10:
             output(size, res)
             i = 0
-except KeyboardInterrupt:
+except Exception as e:
     pass
 finally:
     output(size, res)
