@@ -29,8 +29,6 @@ try:
             output(size, res)
             i = 0
 except KeyboardInterrupt:
-    output(size, res)
-    quit
-
-if i > 0:
+    pass
+finally:
     output(size, res)
