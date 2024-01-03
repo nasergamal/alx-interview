@@ -11,15 +11,15 @@ def validUTF8(data):
     byte_count = 0
     for i in data:
         if byte_count == 0:
-            if i >> 7 > 1:
+            if ("{0:08b}".format(i)).startswith(tuple(byte)):
+                for k, v in byte.items():
+                    if "{0:08b}".format(i)[:v] in k:
+                        byte_count = v - 2
+                        break
+            elif i >> 7 != 0:
                 return False
-            for k, v in byte.items():
-                if "{0:08b}".format(i)[:v] == k:
-                    byte_count = v - 2
-                    break
         else:
-            if "{0:08b}".format(i)[:2] == '10':
-                byte_count -= 1
-            else:
+            if "{0:08b}".format(i)[:2] != '10':
                 return False
+            byte_count -= 1
     return byte_count == 0
