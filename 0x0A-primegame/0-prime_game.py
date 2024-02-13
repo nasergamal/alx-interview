@@ -12,6 +12,8 @@ def isWinner(x, nums):
     '''
         calculate the winner
     '''
+    if x < 1 or not nums:
+        return None
     results = {'Ben': 0, 'Maria': 0}
     max_number = max(nums)
     primes = [True] * (max_number + 1)
